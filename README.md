@@ -1,0 +1,4 @@
+# newcrocus
+---
+permalink: /index.html
+---
