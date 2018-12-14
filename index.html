@@ -20,7 +20,7 @@
         
         // Enter
         circles.enter().append("circle")
-          .attr("r", 20);
+          .attr("r", 10);
 
         // Update
         circles
@@ -31,15 +31,15 @@
         circles.exit().remove();
       }
 
-      var myArrayOfObjects = [
-        { x: 100, y: 100},
-        { x: 130, y: 120},
-        { x: 80 , y: 180},
-        { x: 180, y: 80 },
-        { x: 180, y: 40 }
-      ];
+      function type(d){
+        d.x = +d.x;
+        d.y = +d.y;
+        return d;
+      }
 
-      render(myArrayOfObjects);
+      d3.csv("data_test.csv", type, function (myArrayOfObjects){
+        render(myArrayOfObjects);
+      });
 
     </script>
 
