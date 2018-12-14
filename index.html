@@ -8,6 +8,11 @@
   <body>
 
     <script>
+console.log("hello javascript");
+var mynumber = 5;
+var mystring = "5";
+console.log(mynumber + mystring);
+      
       d3.csv("data_test.csv", function (myArrayOfObjects){
         myArrayOfObjects.forEach(function (d){
           console.log(d.x + ", " + d.y);
