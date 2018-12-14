@@ -37,11 +37,12 @@
   </svg>
     
     <script>
-      d3.csv("data_test.csv", function (myArrayOfObjects){
+      d3.csv("data_test.csv", type, function (myArrayOfObjects){
         myArrayOfObjects.forEach(function (d){
-          console.log(d.x + ", " + d.y);
-        });
-      });
+          console.log(d.x + d.y);
+          return d;
+        }
+                                 
     </script>
     
   </body>
