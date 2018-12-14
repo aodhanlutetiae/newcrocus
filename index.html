@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>D3 Example with csv pulled</title>
+    <title>D3 Example with csv ok</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
   </head>
   <body>
@@ -37,9 +37,7 @@
         return d;
       }
 
-      d3.csv("data_test.csv", type, function (myArrayOfObjects){
-        render(myArrayOfObjects);
-      });
+      d3.csv("data_test.csv", type, render);
 
     </script>
 
