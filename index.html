@@ -22,6 +22,20 @@
   </head>
   
   <body>
+    
+   <svg width = "400" height = "400">
+    <rect x = "0" y = "0" width = "50" height = "200" fill = "grey"> </rect>
+    <rect x = "50" y = "200" width = "200" height = "50" fill = "grey"> </rect>
+    <g transform="translate (50,0)">
+      <circle cx = "0" cy = "0" r = "10"></circle>
+      <circle class="b" cx = "100" cy = "100" r = "10"></circle>
+      <circle class="mycircle" cx = "130" cy = "120" r = "10"></circle>
+      <circle class="b" cx = "80" cy = "180" r = "10"></circle>
+      <circle class="mycircle" cx = "180" cy = "80" r = "10"></circle>
+      <circle class="c" cx = "180" cy = "40" r = "10"></circle>
+    </g>     
+  </svg>
+    
     <script>
       d3.csv("data.csv", function (myArrayOfObjects){
         myArrayOfObjects.forEach(function (d){
@@ -29,6 +43,7 @@
         });
       });
     </script>
+    
   </body>
   
 </html>
