@@ -4,29 +4,46 @@
     <meta charset="utf-8">
     <title>D3 Example</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+
+    <style>
+      circle {
+        fill: none;
+        stroke: blue;
+        stroke-width: 2px;
+      }
+    </style>  
+
   </head>
   <body>
-
     <script>
 
-      var svg = d3.select("body").append("svg")
-        .attr("width",  250)
-        .attr("height", 250);
+      var outerWidth = 300;
+      var outerHeight = 250;
+      var rMin = 5; // "r" stands for radius
+      var rMax = 20;
+      var xColumn = "sepal_length";
+      var yColumn = "petal_length";
+      var rColumn = "sepal_width";
 
-      var xScale = d3.scale.linear().range([0, 250]);
-      var yScale = d3.scale.linear().range([250, 0]);
+      var svg = d3.select("body").append("svg")
+        .attr("width", outerWidth)
+        .attr("height", outerHeight);
+
+      var xScale = d3.scale.linear().range([0, outerWidth]);
+      var yScale = d3.scale.linear().range([outerHeight, 0]);
+      var rScale = d3.scale.linear().range([rMin, rMax]);
 
       function render(data){
-
-        xScale.domain(d3.extent(data, function (d){ return d.sepal_length; }));
-        yScale.domain(d3.extent(data, function (d){ return d.petal_length; }));
+        xScale.domain(d3.extent(data, function (d){ return d[xColumn]; }));
+        yScale.domain(d3.extent(data, function (d){ return d[yColumn]; }));
+        rScale.domain(d3.extent(data, function (d){ return d[rColumn]; }));
 
         var circles = svg.selectAll("circle").data(data);
-        circles.enter().append("circle").attr("r", 10);
+        circles.enter().append("circle");
         circles
-          .attr("cx", function (d){ return xScale(d.sepal_length); })
-          .attr("cy", function (d){ return yScale(d.petal_length); });
-
+          .attr("cx", function (d){ return xScale(d[xColumn]); })
+          .attr("cy", function (d){ return yScale(d[yColumn]); })
+          .attr("r",  function (d){ return rScale(d[rColumn]); });
         circles.exit().remove();
       }
 
@@ -41,6 +58,5 @@
       d3.csv("iris.csv", type, render);
 
     </script>
-
   </body>
 </html>
