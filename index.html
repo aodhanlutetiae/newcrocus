@@ -9,7 +9,7 @@
      <style>
        
       p { font-weight: bold; font-size: 20px; }
-    
+      p1 { font-weight: bold; font-size: 16px; color: red;}
       .chart {
       background:lightgray
       }
@@ -20,8 +20,8 @@
       .csstooltip {
   position: absolute;
   text-align: center;
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   padding: 2px;
   font: 12px sans-serif;
   background: lightgray;
@@ -49,18 +49,22 @@
     <script src="https://d3js.org/d3.v4.min.js"></script> 
     
   </head>  
-  
-  
-  
-  
   <body>
-      
+    
+    
  <p> 
   Global change in the press freedom categories 'unfree', 'partly free' and 'free': 1993 vs 2016 (Source <a href = "https://freedomhouse.org/report/freedom-press/freedom-press-2017">Freedom House)</a>
-    </p>
+    <p1>
+ <br>     
+  This is a trial visualisation (testing D3JS) that's not yet finished. 
+ <br>
+       The main evolution below appears to be a rise in the number of countries with an unfree press, and a drop in the number with a free press.
+    </p1>
     <script>
 
-   
+    
+    var ttip_data = 42;
+      
     var dataset = [{year: "1993 not free", num: 30}, {year: "2015 not free", num: 33}, {year: "1993 partly free", num: 33}, {year: "2015 partly free", num: 35}, {year: "1993 free", num: 36}, {year: "2015 free", num: 31}];
       
     var margin = {top: 30, right: 30, bottom: 30, left: 30};
@@ -73,6 +77,9 @@
                 .attr("width", w + margin.left + margin.right)      // the graph area has a width minus the margins, but the svg has the margins as well
                 .attr("height", h + margin.top + margin.bottom)
                 .append("g")
+               // .attr("margin-left", "automatic")
+                //.attr("margin-right", "automatic")
+                //.attr("display", "block")
                   .attr("transform", "translate(" + 30 + "," + 30 + ")"); 
     
       
@@ -107,16 +114,20 @@
     var xguide = svg.append("g")
                     .attr("class", "xaxis")
                     .call(d3.axisBottom(xS))
-                    .attr("transform", "translate(0," + h + ")");  
+                    .attr("transform", "translate(0," + h + ")");   // THIS FLIPS THE X AXIS FROM THE TOP TO THE BOTTOM
      
-  
+    //var color = d3.scaleOrdinal().range(["#e75b39", "#e75b39", "#f7b00f ", "#f7b00f", "#008837", "#008837"]);
+    
+    //var color2 = d3.scaleOrdinal().range(["#050505", "#050505", "#e72b09 ", "#e72b09", "#fdbe18", "#fdbe18"]); // black,red, gold
+    
+
     
     var tooltip = d3.select("body")
                     .append("div")
                     .attr("class", "csstooltip")
                     .style("z-index", "10")
                     .style("visibility", "hidden")
-                    .text("a VERY simple tooltip");
+                    .text("List of countries dropping in terms of press freedom to go here");
                     //.text(function (d) {return d.num;});
       
     // binding and drawing the objects  
